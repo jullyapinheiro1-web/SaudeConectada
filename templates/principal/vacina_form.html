@@ -1,0 +1,37 @@
+{% extends 'principal/base.html' %}
+
+{% block title %}
+Cadastrar vacina | Saúde Conectada
+{% endblock %}
+
+{% block content %}
+
+<section class="pagina">
+
+    <h1>
+        {% if object %}
+            Editar vacina
+        {% else %}
+            Cadastrar vacina
+        {% endif %}
+    </h1>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            Salvar
+        </button>
+
+        <a href="{% url 'principal:vacinas' %}">
+            Cancelar
+        </a>
+
+    </form>
+
+</section>
+
+{% endblock %}

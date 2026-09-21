@@ -1,0 +1,502 @@
+/* ============================= */
+/* CONFIGURAÇÕES GERAIS */
+/* ============================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #ccffd8;
+    color: #26352d;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ============================= */
+/* CONTEÚDO PRINCIPAL */
+/* ============================= */
+
+main {
+    flex: 1;
+    padding: 40px 0; /* Adiciona espaçamento acima e abaixo para o conteúdo respirar */
+}
+
+
+/* ============================= */
+/* MENU */
+/* ============================= */
+
+.navbar {
+    background-color: #306d49;
+
+    padding: 20px 8%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+
+    font-size: 25px;
+
+    font-weight: bold;
+}
+
+.logo span {
+    color: #b1eec8;
+}
+
+.menu {
+    display: flex;
+
+    gap: 25px;
+
+    align-items: center;
+}
+
+.menu a {
+    color: #ccffd8;
+
+    text-decoration: none;
+
+    transition: 0.2s;
+}
+
+.menu a:hover {
+    color: #ccffd8;
+}
+
+
+/* ============================= */
+/* HERO - PÁGINA INICIAL */
+/* ============================= */
+
+.hero {
+    min-height: 450px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 60px 8%;
+
+    background-color: #ccffd8;
+}
+
+.hero-conteudo {
+    max-width: 700px;
+}
+
+.hero h1 {
+    color: #306d49;
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+.hero h2 {
+    font-size: 28px;
+
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+
+    line-height: 1.6;
+
+    margin-bottom: 30px;
+}
+
+
+/* ============================= */
+/* BOTÃO */
+/* ============================= */
+
+.botao {
+    display: inline-block;
+
+    padding: 14px 25px;
+
+    background-color: #306d49;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 8px;
+
+    transition: 0.2s;
+}
+
+.botao:hover {
+    background-color: #245437;
+}
+
+
+/* ============================= */
+/* SERVIÇOS */
+/* ============================= */
+
+.servicos {
+    padding: 60px 8%;
+
+    text-align: center;
+}
+
+.servicos h2 {
+    font-size: 30px;
+
+    margin-bottom: 35px;
+}
+
+
+/* ============================= */
+/* CARDS */
+/* ============================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+    );
+
+    gap: 25px;
+
+    width: 100%;
+}
+
+.card {
+    background-color: white;
+
+    width: 100%;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+
+    text-align: left;
+}
+
+.card h3 {
+    color: #306d49;
+
+    margin-bottom: 15px;
+}
+
+.card p {
+    line-height: 1.6;
+
+    margin-bottom: 8px;
+}
+
+
+/* ============================= */
+/* PÁGINAS INTERNAS */
+/* ============================= */
+
+.pagina {
+    width: 100%;
+
+    padding: 40px 8%;
+
+    min-height: 500px;
+}
+
+.pagina h1 {
+    color: #306d49;
+
+    font-size: 32px;
+
+    margin-bottom: 10px;
+}
+
+.pagina > p {
+    margin-bottom: 30px;
+
+    line-height: 1.6;
+}
+
+
+/* ============================= */
+/* FORMULÁRIO (Corrigido) */
+/* ============================= */
+
+form {
+    width: 100%;
+    max-width: 650px;
+    margin: 30px auto 0;
+
+    display: flex;
+    flex-direction: column; /* Força os elementos a ficarem um abaixo do outro */
+    gap: 15px; /* Espaço vertical idêntico entre cada campo */
+
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+}
+
+form label {
+    font-weight: bold;
+    color: #26352d;
+    margin-bottom: -5px; /* Deixa o label mais próximo do seu respectivo input */
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    outline: none;
+    background-color: #fafafa;
+    transition: border-color 0.2s;
+}
+
+form input:focus,
+form textarea:focus {
+    border-color: #306d49;
+    background-color: white;
+}
+
+form textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+form button {
+    margin-top: 10px;
+    padding: 14px;
+
+    background-color: #306d49;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+form button:hover {
+    background-color: #245437;
+}
+
+
+/* ============================= */
+/* MENSAGEM */
+/* ============================= */
+
+.mensagem {
+    width: 100%;
+
+    max-width: 650px;
+
+    margin: 0 auto 20px;
+
+    padding: 12px;
+
+    background-color: #dff5e6;
+
+    border-radius: 6px;
+
+    color: #306d49;
+
+    text-align: center;
+}
+
+
+/* ============================= */
+/* CHAMADA */
+/* ============================= */
+
+.chamada {
+    padding: 60px 8%;
+
+    text-align: center;
+
+    background-color: #e2f6e9;
+}
+
+.chamada h2 {
+    color: #306d49;
+
+    margin-bottom: 15px;
+}
+
+.chamada p {
+    margin-bottom: 25px;
+}
+
+
+/* ============================= */
+/* RODAPÉ */
+/* ============================= */
+
+footer {
+    background-color: #306d49;
+
+    color: white;
+
+    text-align: center;
+
+    padding: 25px;
+
+    margin-top: auto; /* Empurra o rodapé para a base caso a página tenha pouco conteúdo */
+
+    width: 100%;
+}
+
+footer p {
+    margin: 5px;
+}
+
+
+/* ============================= */
+/* RESPONSIVIDADE */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    /* MENU */
+
+    .navbar {
+        flex-direction: column;
+
+        gap: 20px;
+
+        padding: 20px 5%;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 15px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        text-align: center;
+
+        padding: 50px 5%;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero h2 {
+        font-size: 23px;
+    }
+
+
+    /* SERVIÇOS */
+
+    .servicos {
+        padding: 45px 5%;
+    }
+
+
+    /* PÁGINAS */
+
+    .pagina {
+        padding: 35px 5%;
+    }
+
+
+    /* CARDS */
+
+    .cards {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+
+    /* FORMULÁRIO */
+
+    form {
+        padding: 25px;
+
+        margin-top: 20px;
+    }
+}
+/* ============================= */
+/* TÍTULO DAS PÁGINAS */
+/* ============================= */
+
+.titulo-pagina {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 30px;
+
+    margin-bottom: 30px;
+}
+
+
+.titulo-pagina h1 {
+    margin-bottom: 10px;
+}
+
+
+.titulo-pagina p {
+    margin: 0;
+}
+
+
+.titulo-pagina .botao {
+    white-space: nowrap;
+}
+
+
+/* ============================= */
+/* RESPONSIVIDADE DOS BOTÕES */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+    .titulo-pagina {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 15px;
+    }
+
+}

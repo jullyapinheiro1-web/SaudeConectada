@@ -1,0 +1,76 @@
+{% extends 'principal/base.html' %}
+
+
+{% block title %}
+Campanhas | Saúde Conectada
+{% endblock %}
+
+
+{% block content %}
+
+<section class="pagina">
+
+    <div class="titulo-pagina">
+
+        <div>
+
+            <h1>
+                Campanhas de vacinação
+            </h1>
+
+            <p>
+                Consulte as campanhas de vacinação disponíveis.
+            </p>
+
+        </div>
+
+
+        <a href="{% url 'admin:principal_campanha_add' %}"
+           class="botao">
+
+            Cadastrar campanha
+
+        </a>
+
+    </div>
+
+
+    <div class="cards">
+
+        {% for campanha in campanhas %}
+
+            <div class="card">
+
+                <h3>
+                    {{ campanha.nome }}
+                </h3>
+
+                <p>
+                    {{ campanha.descricao }}
+                </p>
+
+                <p>
+                    <strong>Início:</strong>
+                    {{ campanha.data_inicio }}
+                </p>
+
+                <p>
+                    <strong>Fim:</strong>
+                    {{ campanha.data_fim }}
+                </p>
+
+            </div>
+
+        {% empty %}
+
+            <p>
+                Nenhuma campanha cadastrada.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,107 @@
+{% extends 'principal/base.html' %}
+
+{% block title %}
+Saúde Conectada | Início
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="hero-conteudo">
+
+        <h1>
+            Saúde Conectada
+        </h1>
+
+        <h2>
+            Informação sobre vacinação onde você estiver.
+        </h2>
+
+        <p>
+            Encontre informações sobre vacinas, campanhas
+            de vacinação e locais disponíveis para atendimento,
+            inclusive em regiões mais distantes.
+        </p>
+
+        <a href="#servicos" class="botao">
+            Conheça o sistema
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="servicos" id="servicos">
+
+    <h2>
+        O que você encontra aqui?
+    </h2>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>
+                Vacinas
+            </h3>
+
+            <p>
+                Consulte informações importantes sobre vacinas,
+                doses e orientações.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Locais de vacinação
+            </h3>
+
+            <p>
+                Encontre locais disponíveis para vacinação
+                próximos às regiões atendidas.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Campanhas
+            </h3>
+
+            <p>
+                Acompanhe campanhas de vacinação e fique
+                informado sobre as ações disponíveis.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="chamada">
+
+    <h2>
+        Informação também é prevenção
+    </h2>
+
+    <p>
+        Consulte as informações disponíveis e mantenha-se
+        informado sobre vacinação.
+    </p>
+
+    <a href="{% url 'principal:vacinas' %}" class="botao">
+        Ver informações
+    </a>
+
+</section>
+
+{% endblock %}

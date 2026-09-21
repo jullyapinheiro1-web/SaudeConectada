@@ -1,0 +1,72 @@
+{% extends 'principal/base.html' %}
+
+
+{% block title %}
+Locais | Saúde Conectada
+{% endblock %}
+
+
+{% block content %}
+
+<section class="pagina">
+
+    <div class="titulo-pagina">
+
+        <div>
+
+            <h1>
+                Locais de vacinação
+            </h1>
+
+            <p>
+                Consulte os locais onde a vacinação está disponível.
+            </p>
+
+        </div>
+
+
+        <a href="{% url 'admin:principal_localvacinacao_add' %}"
+           class="botao">
+
+            Cadastrar local
+
+        </a>
+
+    </div>
+
+
+    <div class="cards">
+
+        {% for local in locais %}
+
+            <div class="card">
+
+                <h3>
+                    {{ local.nome }}
+                </h3>
+
+                <p>
+                    <strong>Endereço:</strong>
+                    {{ local.endereco }}
+                </p>
+
+                <p>
+                    <strong>Cidade:</strong>
+                    {{ local.cidade }}
+                </p>
+
+            </div>
+
+        {% empty %}
+
+            <p>
+                Nenhum local cadastrado.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

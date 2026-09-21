@@ -1,0 +1,98 @@
+{% extends 'principal/base.html' %}
+
+{% block title %}
+Vacinas | Saúde Conectada
+{% endblock %}
+
+{% block content %}
+
+<section class="pagina">
+
+    <div class="titulo-pagina">
+
+        <div>
+
+            <h1>
+                Vacinas
+            </h1>
+
+            <p>
+                Consulte as vacinas cadastradas.
+            </p>
+
+        </div>
+
+        <a href="{% url 'principal:vacina_create' %}" class="botao">
+            Cadastrar vacina
+        </a>
+
+    </div>
+
+
+    <div class="cards">
+
+        {% for vacina in vacinas %}
+
+            <div class="card">
+
+                <h3>
+                    {{ vacina.nome }}
+                </h3>
+
+                <p>
+                    <strong>Fabricante:</strong>
+                    {{ vacina.fabricante }}
+                </p>
+
+                <p>
+                    <strong>Lote:</strong>
+                    {{ vacina.lote }}
+                </p>
+
+                <p>
+                    <strong>Tipo de dose:</strong>
+                    {{ vacina.tipo_dose }}
+                </p>
+
+                <a href="{% url 'principal:vacina_detail' vacina.pk %}">
+                    Ver detalhes
+                </a>
+
+            </div>
+
+        {% empty %}
+
+            <p>
+                Nenhuma vacina cadastrada.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+
+    {% if is_paginated %}
+
+        <div>
+
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">
+                    Anterior
+                </a>
+            {% endif %}
+
+            Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">
+                    Próxima
+                </a>
+            {% endif %}
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
