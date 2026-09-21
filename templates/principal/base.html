@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% block title %}
+        Saúde Conectada
+        {% endblock %}
+    </title>
+
+    <link rel="stylesheet" href="{% static 'principal/css/style.css' %}">
+    <!-- Importação dos Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                Saúde<span>Conectada</span>
+            </div>
+
+            <div class="menu">
+
+                <a href="{% url 'principal:home' %}">
+                    Início
+                </a>
+
+                <a href="{% url 'principal:vacinas' %}">
+                    Vacinas
+                </a>
+
+                <a href="{% url 'principal:campanhas' %}">
+                    Campanhas
+                </a>
+
+                <a href="{% url 'principal:locais' %}">
+                    Locais
+                </a>
+
+                <a href="{% url 'admin:index' %}">
+                    Cadastro
+                </a>
+
+            </div>
+
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>Saúde Conectada © 2026</p>
+        <p>Informação sobre vacinação para todos.</p>
+    </footer>
+
+</body>
+
+</html>

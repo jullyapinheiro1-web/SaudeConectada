@@ -1,0 +1,55 @@
+{% extends 'principal/base.html' %}
+
+{% block title %}
+{{ vacina.nome }} | Saúde Conectada
+{% endblock %}
+
+{% block content %}
+
+<section class="pagina">
+
+    <h1>
+        {{ vacina.nome }}
+    </h1>
+
+    <div class="card">
+
+        <p>
+            <strong>Fabricante:</strong>
+            {{ vacina.fabricante }}
+        </p>
+
+        <p>
+            <strong>Lote:</strong>
+            {{ vacina.lote }}
+        </p>
+
+        <p>
+            <strong>Tipo de dose:</strong>
+            {{ vacina.tipo_dose }}
+        </p>
+
+        <p>
+            <strong>Descrição:</strong>
+            {{ vacina.descricao }}
+        </p>
+
+        <br>
+
+        <a href="{% url 'principal:vacina_update' vacina.pk %}" class="botao">
+            Editar
+        </a>
+
+        <a href="{% url 'principal:vacina_delete' vacina.pk %}" class="botao">
+            Excluir
+        </a>
+
+        <a href="{% url 'principal:vacinas' %}">
+            Voltar
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}
