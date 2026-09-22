@@ -1,75 +1,87 @@
 {% extends 'principal/base.html' %}
 
-
 {% block title %}
 Campanhas | Saúde Conectada
 {% endblock %}
-
 
 {% block content %}
 
 <section class="pagina">
 
-    <div class="titulo-pagina">
+<!-- Cabeçalho da página -->
+<div class="titulo-pagina">
 
-        <div>
+    <div>
+        <h1>Campanhas de vacinação</h1>
 
-            <h1>
-                Campanhas de vacinação
-            </h1>
-
-            <p>
-                Consulte as campanhas de vacinação disponíveis.
-            </p>
-
-        </div>
-
-
-        <a href="{% url 'admin:principal_campanha_add' %}"
-           class="botao">
-
-            Cadastrar campanha
-
-        </a>
-
+        <p>
+            Confira as campanhas de vacinação disponíveis
+            e acompanhe suas informações.
+        </p>
     </div>
 
+    <a href="{% url 'admin:principal_campanha_add' %}" class="botao">
+        + Cadastrar campanha
+    </a>
 
-    <div class="cards">
+</div>
 
-        {% for campanha in campanhas %}
 
-            <div class="card">
+<!-- Lista de campanhas -->
+<div class="cards">
+
+    {% for campanha in campanhas %}
+
+        <article class="card">
+
+            <div class="card-conteudo">
 
                 <h3>
                     {{ campanha.nome }}
                 </h3>
 
-                <p>
+                <p class="descricao">
                     {{ campanha.descricao }}
                 </p>
 
-                <p>
-                    <strong>Início:</strong>
-                    {{ campanha.data_inicio }}
-                </p>
+                <div class="datas">
 
-                <p>
-                    <strong>Fim:</strong>
-                    {{ campanha.data_fim }}
-                </p>
+                    <div>
+                        <span>📅 Início</span>
+                        <strong>
+                            {{ campanha.data_inicio|date:"d/m/Y" }}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>📅 Encerramento</span>
+                        <strong>
+                            {{ campanha.data_fim|date:"d/m/Y" }}
+                        </strong>
+                    </div>
+
+                </div>
 
             </div>
 
-        {% empty %}
+        </article>
+
+    {% empty %}
+
+        <div class="card vazio">
+
+            <h3>Nenhuma campanha cadastrada</h3>
 
             <p>
-                Nenhuma campanha cadastrada.
+                No momento, não existem campanhas de vacinação
+                disponíveis.
             </p>
 
-        {% endfor %}
+        </div>
 
-    </div>
+    {% endfor %}
+
+</div>
 
 </section>
 
