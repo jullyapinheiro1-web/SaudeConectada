@@ -39,10 +39,10 @@ As tecnologias utilizadas no desenvolvimento do projeto são:
 
 | Integrante | Responsabilidade |
 
-| Fabrício Lemos | Desenvolvimento da tela de locais de vacinação e cadastro de locais |
-| Thayla Vitória| Desenvolvimento da tela de campanhas e cadastro de campanhas |
-| Jullya Pinheiro | Desenvolvimento da tela de vacinas e cadastro de vacinas |
-| Suellen Vitória | Desenvolvimento da tela inicial e tela de login |
+| Fabrício Lemos | Desenvolvimento da tela de locais de vacinação e cadastro de locais;
+| Thayla Vitória| Desenvolvimento da tela de campanhas e cadastro de campanhas;
+| Jullya Pinheiro | Desenvolvimento da tela de vacinas e cadastro de vacinas;
+| Suellen Vitória | Desenvolvimento da tela inicial e tela de login.
 
 ---
 
