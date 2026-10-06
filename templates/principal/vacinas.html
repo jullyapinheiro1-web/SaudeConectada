@@ -1,0 +1,70 @@
+{% extends 'principal/base.html' %}
+
+{% block title %}
+Vacinas | Saúde Conectada
+{% endblock %}
+
+{% block content %}
+
+<section class="pagina">
+
+    <div class="titulo-pagina">
+
+        <div>
+            <h1>Vacinas</h1>
+
+            <p>
+                Consulte as vacinas cadastradas no sistema.
+            </p>
+        </div>
+
+        <a href="{% url 'admin:index' %}" class="botao">
+            Cadastrar vacina
+        </a>
+
+    </div>
+
+    <div class="cards">
+
+        {% for vacina in vacinas %}
+
+            <div class="card">
+
+                <h3>
+                    {{ vacina.nome }}
+                </h3>
+
+                <p>
+                    <strong>Fabricante:</strong>
+                    {{ vacina.fabricante }}
+                </p>
+
+                <p>
+                    <strong>Lote:</strong>
+                    {{ vacina.lote }}
+                </p>
+
+                <p>
+                    <strong>Tipo de dose:</strong>
+                    {{ vacina.tipo_dose }}
+                </p>
+
+                <p>
+                    {{ vacina.descricao }}
+                </p>
+
+            </div>
+
+        {% empty %}
+
+            <p>
+                Nenhuma vacina cadastrada.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

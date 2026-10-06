@@ -1,0 +1,69 @@
+{% extends 'principal/base.html' %}
+
+{% block title %}
+Detalhes do Local | Saúde Conectada
+{% endblock %}
+
+{% block content %}
+<!-- Ajustado para centralizar o conteúdo e usar o fundo verde correto -->
+<section class="pagina d-flex flex-column align-items-center" style="background-color: #c6f4d6; min-height: 100vh; padding: 40px 20px; font-family: sans-serif;">
+
+    <div style="width: 100%; max-width: 600px; margin-bottom: 20px;">
+        <h1 style="color: #2d6a4f; font-size: 2rem; font-weight: bold; margin-top: 0;">
+            Detalhes do local
+        </h1>
+    </div>
+
+    <!-- Ajustada a largura máxima para 600px e padding para 40px (igual ao cadastro) -->
+    <div class="form-container" style="background-color: #ffffff; border-radius: 8px; padding: 40px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); width: 100%; max-width: 600px; box-sizing: border-box;">
+
+        <!-- Campo: Nome (Apenas leitura) -->
+        <div style="margin-bottom: 20px;">
+            <label for="nome" style="display: block; font-weight: normal; margin-bottom: 8px; color: #000;">
+                Nome:
+            </label>
+            <input type="text" id="nome" value="{{ local.nome }}" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; background-color: #e9ecef; box-sizing: border-box; color: #495057;" disabled>
+        </div>
+
+        <!-- Campo: Endereço (Apenas leitura) -->
+        <div style="margin-bottom: 20px;">
+            <label for="endereco" style="display: block; font-weight: normal; margin-bottom: 8px; color: #000;">
+                Endereço:
+            </label>
+            <input type="text" id="endereco" value="{{ local.endereco }}" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; background-color: #e9ecef; box-sizing: border-box; color: #495057;" disabled>
+        </div>
+
+        <!-- Campo: Cidade (Apenas leitura) -->
+        <div style="margin-bottom: 25px;">
+            <label for="cidade" style="display: block; font-weight: normal; margin-bottom: 8px; color: #000;">
+                Cidade:
+            </label>
+            <input type="text" id="cidade" value="{{ local.cidade }}" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; background-color: #e9ecef; box-sizing: border-box; color: #495057;" disabled>
+        </div>
+
+        <!-- Bloco de Botões de Ação do Detalhes -->
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+
+            <div style="display: flex; gap: 15px;">
+                <!-- Botão Editar (Verde escuro correspondente) -->
+                <a href="{% url 'principal:editar_local' local.id %}" style="flex: 1; background-color: #2d6a4f; color: white; border: none; padding: 12px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 1rem; text-align: center; text-decoration: none;">
+                    Editar
+                </a>
+
+                <!-- Botão Excluir (Vermelho fosco correspondente) -->
+                <a href="{% url 'principal:excluir_local' local.id %}" style="flex: 1; background-color: #a55b5b; color: white; border: none; padding: 12px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 1rem; text-align: center; text-decoration: none;" onclick="return confirm('Tem certeza que deseja excluir este local?');">
+                    Excluir
+                </a>
+            </div>
+
+            <!-- Botão Cancelar -->
+            <div style="text-align: left; margin-top: 5px;">
+                <a href="{% url 'principal:locais' %}" style="color: #a55b5b; text-decoration: underline; font-size: 0.9rem;">
+                    Cancelar
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'principal/base.html' %}
+
+{% block title %}
+Excluir vacina | Saúde Conectada
+{% endblock %}
+
+{% block content %}
+
+<section class="pagina">
+
+    <h1>
+        Excluir vacina
+    </h1>
+
+    <p>
+        Tem certeza que deseja excluir a vacina
+        <strong>{{ object.nome }}</strong>?
+    </p>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <button type="submit">
+            Sim, excluir
+        </button>
+
+        <a href="{% url 'principal:vacina_detail' object.pk %}">
+            Cancelar
+        </a>
+
+    </form>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Cadastro | Saúde Conectada
+{% endblock %}
+
+
+{% block content %}
+
+<section class="pagina">
+
+    <h1>Cadastro de vacina</h1>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+
+        <label>
+            Nome:
+        </label>
+
+        <input
+            type="text"
+            name="nome"
+            required
+        >
+
+
+        <label>
+            Fabricante:
+        </label>
+
+        <input
+            type="text"
+            name="fabricante"
+            required
+        >
+
+
+        <label>
+            Lote:
+        </label>
+
+        <input
+            type="text"
+            name="lote"
+            required
+        >
+
+
+        <label>
+            Tipo de dose:
+        </label>
+
+        <input
+            type="text"
+            name="tipo_dose"
+            required
+        >
+
+
+        <label>
+            Descrição:
+        </label>
+
+        <textarea
+            name="descricao"
+            required
+        ></textarea>
+
+
+        <button type="submit">
+            Cadastrar
+        </button>
+
+    </form>
+
+</section>
+
+{% endblock %}
