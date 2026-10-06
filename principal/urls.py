@@ -50,6 +50,13 @@ urlpatterns = [
         name='campanhas'
     ),
 
+    # CORREÇÃO AQUI: Alterado para chamar a view baseada em função sem o .as_view()
+    path(
+        'campanha/cadastrar/',
+        views.cadastrar_campanha,
+        name='cadastrar_campanha'
+    ),
+
     # Locais
     path(
         'locais/',
@@ -57,16 +64,3 @@ urlpatterns = [
         name='locais'
     ),
 ]
-
-
-#from django.contrib import admin
-#from django.urls import path
-#from principal import views
-
-#app_name = 'principal'
-#urlpatterns = [
-#    path('', views.home, name='home'),
-#    path('vacinas/', views.vacinas, name='vacinas'),
-#    path('campanhas/', views.campanhas, name='campanhas'),
-#    path('locais/', views.locais, name='locais'),
-#]

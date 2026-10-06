@@ -1,0 +1,88 @@
+{% extends 'principal/base.html' %}
+
+{% block title %}
+Cadastro de Campanha | Saúde Conectada
+{% endblock %}
+
+{% block content %}
+
+<section class="pagina">
+
+    <h1>Cadastrar campanha</h1>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        <label>
+            Nome da Campanha:
+        </label>
+        <input
+            type="text"
+            name="nome"
+            required
+        >
+
+        <label>
+            Descrição:
+        </label>
+        <textarea
+            name="descricao"
+            required
+        ></textarea>
+
+        <label>
+            Data início:
+        </label>
+        <input
+            type="date"
+            name="data_inicio"
+            required
+        >
+
+        <label>
+            Data fim:
+        </label>
+        <input
+            type="date"
+            name="data_fim"
+            required
+        >
+
+        <label>
+            Selecione as Vacinas desta Campanha:
+        </label>
+        <select name="vacinas" multiple required style="width: 100%; min-height: 120px; padding: 10px; border: 1px solid #dee2e6; border-radius: 6px; background-color: #f8f9fa; font-size: 14px; margin-bottom: 5px; box-sizing: border-box;">
+            {% for vacina in lista_vacinas %}
+                <option value="{{ vacina.id }}">{{ vacina.nome }} ({{ vacina.fabricante }})</option>
+            {% empty %}
+                <option disabled>Nenhuma vacina cadastrada no sistema.</option>
+            {% endfor %}
+        </select>
+        <small style="color: #6c757d; display: block; margin-bottom: 20px;">
+            * Segure a tecla <strong>Ctrl</strong> para selecionar mais de uma vacina.
+        </small>
+
+        <label>
+            Selecione os Locais de Vacinação:
+        </label>
+        <select name="locais" multiple required style="width: 100%; min-height: 120px; padding: 10px; border: 1px solid #dee2e6; border-radius: 6px; background-color: #f8f9fa; font-size: 14px; margin-bottom: 5px; box-sizing: border-box;">
+            {% for local in lista_locais %}
+                <option value="{{ local.id }}">{{ local.nome }} - {{ local.cidade }}</option>
+            {% empty %}
+                <option disabled>Nenhuma vacina cadastrada no sistema.</option>
+            {% endfor %}
+        </select>
+        <small style="color: #6c757d; display: block; margin-bottom: 20px;">
+            * Segure a tecla <strong>Ctrl</strong> para selecionar múltiplos locais.
+        </small>
+
+        <button type="submit">
+            Salvar Campanha
+        </button>
+
+    </form>
+
+</section>
+
+{% endblock %}
