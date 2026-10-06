@@ -1,0 +1,268 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Saúde Conectada</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: linear-gradient(
+                135deg,
+                #e8f8f5,
+                #d9f1ff
+            );
+        }
+
+        .login-box {
+            width: 400px;
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            width: 65px;
+            height: 65px;
+
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #16a085;
+            color: white;
+
+            font-size: 40px;
+            font-weight: bold;
+        }
+
+        .logo h1 {
+            margin-top: 15px;
+            color: #167c68;
+            font-size: 26px;
+        }
+
+        .logo p {
+            margin-top: 5px;
+            color: #777;
+        }
+
+        .campo {
+            margin-bottom: 20px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 8px;
+
+            color: #333;
+            font-weight: bold;
+        }
+
+        .campo input {
+            width: 100%;
+            padding: 14px;
+
+            border: 1px solid #ccc;
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            outline: none;
+        }
+
+        .campo input:focus {
+            border-color: #16a085;
+        }
+
+        .opcoes {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 25px;
+
+            font-size: 13px;
+        }
+
+        .opcoes a {
+            color: #16a085;
+            text-decoration: none;
+        }
+
+        .btn-login {
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #16a085;
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            background: #12876f;
+        }
+
+        .cadastro {
+            text-align: center;
+            margin-top: 25px;
+
+            color: #777;
+            font-size: 14px;
+        }
+
+        .cadastro a {
+            color: #16a085;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .erro {
+            padding: 10px;
+            margin-bottom: 20px;
+
+            background: #ffe5e5;
+            color: #c0392b;
+
+            border-radius: 7px;
+
+            text-align: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                +
+            </div>
+
+            <h1>Saúde Conectada</h1>
+
+            <p>Entre na sua conta</p>
+
+        </div>
+
+
+        {% if form.errors %}
+            <div class="erro">
+                Usuário ou senha incorretos.
+            </div>
+        {% endif %}
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="campo">
+                <label for="id_username">
+                    Usuário
+                </label>
+
+                <input
+                    type="text"
+                    name="username"
+                    id="id_username"
+                    placeholder="Digite seu usuário"
+                    required
+                >
+            </div>
+
+
+            <div class="campo">
+
+                <label for="id_password">
+                    Senha
+                </label>
+
+                <input
+                    type="password"
+                    name="password"
+                    id="id_password"
+                    placeholder="Digite sua senha"
+                    required
+                >
+
+            </div>
+
+
+            <div class="opcoes">
+
+                <label>
+                    <input type="checkbox">
+                    Lembrar-me
+                </label>
+
+                <a href="#">
+                    Esqueci minha senha
+                </a>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="btn-login"
+            >
+                Entrar
+            </button>
+
+        </form>
+
+
+        <div class="cadastro">
+
+            Ainda não possui uma conta?
+
+            <a href="{% url 'cadastro' %}">
+                Criar conta
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
