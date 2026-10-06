@@ -24,46 +24,7 @@ Vacinas | Saúde Conectada
 
     </div>
 
-    <div class="cards">
 
-        {% for vacina in vacinas %}
-
-            <div class="card">
-
-                <h3>
-                    {{ vacina.nome }}
-                </h3>
-
-                <p>
-                    <strong>Fabricante:</strong>
-                    {{ vacina.fabricante }}
-                </p>
-
-                <p>
-                    <strong>Lote:</strong>
-                    {{ vacina.lote }}
-                </p>
-
-                <p>
-                    <strong>Tipo de dose:</strong>
-                    {{ vacina.tipo_dose }}
-                </p>
-
-                <p>
-                    {{ vacina.descricao }}
-                </p>
-
-            </div>
-
-        {% empty %}
-
-            <p>
-                Nenhuma vacina cadastrada.
-            </p>
-
-        {% endfor %}
-
-    </div>
 
 </section>
 
