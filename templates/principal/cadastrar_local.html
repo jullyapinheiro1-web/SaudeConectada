@@ -1,0 +1,61 @@
+{% extends 'principal/base.html' %}
+
+{% block title %}
+{% if local %}Editar Local{% else %}Cadastrar Local{% endif %} | Saúde Conectada
+{% endblock %}
+
+{% block content %}
+<section class="pagina d-flex flex-column align-items-center" style="background-color: #c6f4d6; min-height: 100vh; padding: 40px 20px; font-family: sans-serif;">
+
+    <div style="width: 100%; max-width: 600px; margin-bottom: 20px;">
+        <h1 style="color: #2d6a4f; font-size: 2rem; font-weight: bold; margin-top: 0;">
+            {% if local %}Editar local{% else %}Cadastrar local{% endif %}
+        </h1>
+        <p style="color: #555; margin-top: 5px;">Preencha os dados abaixo para adicionar um novo local de vacinação.</p>
+    </div>
+
+    <div class="form-container" style="background-color: #ffffff; border-radius: 8px; padding: 40px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); width: 100%; max-width: 600px; box-sizing: border-box;">
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Campo: Nome -->
+            <div style="margin-bottom: 20px;">
+                <label for="nome" style="display: block; font-weight: bold; margin-bottom: 8px; color: #2d6a4f; font-size: 14px;">
+                    Nome:
+                </label>
+                <input type="text" name="nome" id="nome" value="{{ local.nome|default:'' }}" style="width: 100%; padding: 12px; border: 1px solid #ced4da; border-radius: 6px; background-color: #fcfcfc; box-sizing: border-box;" placeholder="Nome do local (Ex: UBS Central)" required>
+            </div>
+
+            <!-- Campo: Endereço -->
+            <div style="margin-bottom: 20px;">
+                <label for="endereco" style="display: block; font-weight: bold; margin-bottom: 8px; color: #2d6a4f; font-size: 14px;">
+                    Endereço:
+                </label>
+                <input type="text" name="endereco" id="endereco" value="{{ local.endereco|default:'' }}" style="width: 100%; padding: 12px; border: 1px solid #ced4da; border-radius: 6px; background-color: #fcfcfc; box-sizing: border-box;" placeholder="Endereço completo" required>
+            </div>
+
+            <!-- Campo: Cidade -->
+            <div style="margin-bottom: 25px;">
+                <label for="cidade" style="display: block; font-weight: bold; margin-bottom: 8px; color: #2d6a4f; font-size: 14px;">
+                    Cidade:
+                </label>
+                <input type="text" name="cidade" id="cidade" value="{{ local.cidade|default:'' }}" style="width: 100%; padding: 12px; border: 1px solid #ced4da; border-radius: 6px; background-color: #fcfcfc; box-sizing: border-box;" placeholder="Nome da cidade" required>
+            </div>
+
+            <!-- Botão Salvar -->
+            <button type="submit" style="width: 100%; background-color: #2d6a4f; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-bottom: 15px; transition: background-color 0.2s;">
+                Salvar Local
+            </button>
+
+            <!-- Botão Cancelar -->
+            <div style="text-align: left; margin-top: 10px;">
+                <a href="{% url 'principal:locais' %}" style="color: #a55b5b; text-decoration: underline; font-size: 0.9rem; font-weight: bold;">
+                    Cancelar
+                </a>
+            </div>
+
+        </form>
+    </div>
+</section>
+{% endblock %}

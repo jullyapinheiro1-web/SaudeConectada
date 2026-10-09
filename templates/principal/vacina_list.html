@@ -12,6 +12,55 @@
         </a>
     </div>
 
+<!-- Cartões informativos de vacinas -->
+<div class="resumo-vacinas">
+
+    <div class="cartao-resumo-vacinas">
+        <i class="bi bi-eyedropper"></i>
+        <h2 id="totalVacinas">{% if is_paginated %}{{ page_obj.paginator.count }}{% else %}{{ vacinas|length }}{% endif %}</h2>
+        <p>Vacinas cadastradas</p>
+    </div>
+
+    <div class="cartao-resumo-vacinas">
+        <i class="bi bi-building"></i>
+        <h2 id="totalFabricantes">0</h2>
+        <p>Fabricantes diferentes</p>
+    </div>
+
+    <div class="cartao-resumo-vacinas">
+        <i class="bi bi-list-ul"></i>
+        <h2 id="totalTiposDose">0</h2>
+        <p>Tipos de dose diferentes</p>
+    </div>
+
+</div>
+
+<!-- Pesquisa de vacinas -->
+
+
+<div class="pesquisa-vacinas">
+
+    <select id="filtroTipoDose" aria-label="Filtrar por tipo de dose">
+        <option value="">Todos os tipos de dose</option>
+    </select>
+
+    <div class="pesquisa-direita">
+        <input
+            type="text"
+            id="pesquisaVacinas"
+            placeholder="Buscar por nome, fabricante, lote ou tipo de dose..."
+            aria-label="Pesquisar vacinas"
+        >
+
+        <button type="button" id="limparPesquisaVacinas">
+            Limpar
+        </button>
+    </div>
+
+    <span id="resultadoPesquisaVacinas" aria-live="polite"></span>
+
+</div>
+
     <div class="tabela-container">
         <table class="tabela-vacinas">
             <thead>
@@ -65,8 +114,188 @@
     {% endif %}
 </section>
 
-{% endblock %}
 
+<style>
+/* ==============================
+   CARTÕES INFORMATIVOS
+============================== */
+
+.resumo-vacinas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 18px 0;
+}
+
+.cartao-resumo-vacinas {
+    background-color: #ffffff;
+    color: #306d49;
+    border-radius: 10px;
+    padding: 14px 18px;
+    min-height: 100px;
+    box-sizing: border-box;
+}
+
+.cartao-resumo-vacinas i {
+    display: block;
+    font-size: 21px;
+    color: #43865c;
+}
+
+.cartao-resumo-vacinas h2 {
+    margin: 7px 0 3px;
+    font-size: 25px;
+    font-weight: 500;
+    color: #306d49;
+}
+
+.cartao-resumo-vacinas p {
+    margin: 0;
+    font-size: 13px;
+    color: #477858;
+}
+
+
+/* ==============================
+   FILTRO E BARRA DE PESQUISA
+============================== */
+
+.pesquisa-vacinas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: calc(100% - 166px);
+    margin: 16px auto;
+    box-sizing: border-box;
+}
+
+#filtroTipoDose {
+    flex: 0 0 190px;
+    width: 190px;
+    max-width: 190px;
+    margin: 0;
+    padding: 10px 12px;
+    border: 1px solid #d5e3d9;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #306d49;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.pesquisa-direita {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    min-width: 0;
+}
+
+#pesquisaVacinas {
+    flex: 0 1 300px;
+    width: 300px;
+    max-width: 300px;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid #d5e3d9;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+#limparPesquisaVacinas {
+    flex-shrink: 0;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background-color: #306d49;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+/* ==============================
+   TELAS MENORES
+============================== */
+
+@media (max-width: 900px) {
+    .pesquisa-vacinas {
+        width: 100%;
+    }
+}
+
+@media (max-width: 650px) {
+    .resumo-vacinas {
+        grid-template-columns: 1fr;
+    }
+
+    .pesquisa-vacinas {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    #filtroTipoDose {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: none;
+    }
+
+    .pesquisa-direita {
+        width: 100%;
+    }
+
+    #pesquisaVacinas {
+        flex: 1;
+        width: auto;
+        max-width: none;
+    }
+}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const tabela = document.querySelector(".tabela-vacinas");
+
+    if (!tabela) return;
+
+    const linhas = Array.from(
+        tabela.querySelectorAll("tbody tr")
+    ).filter(function (linha) {
+        return linha.querySelectorAll("td").length > 1;
+    });
+
+
+    const fabricantes = new Set();
+    const tiposDose = new Set();
+
+    linhas.forEach(function (linha) {
+        const colunas = linha.querySelectorAll("td");
+
+        const fabricante = colunas[1]?.textContent.trim();
+        const tipoDose = colunas[3]?.textContent.trim();
+
+        if (fabricante && fabricante !== "-") {
+            fabricantes.add(fabricante.toLocaleLowerCase("pt-BR"));
+        }
+
+        if (tipoDose && tipoDose !== "-") {
+            tiposDose.add(tipoDose.toLocaleLowerCase("pt-BR"));
+        }
+    });
+
+    document.getElementById("totalFabricantes").textContent =
+        fabricantes.size;
+
+    document.getElementById("totalTiposDose").textContent =
+        tiposDose.size;
+});
+</script>
+
+{% endblock %}
 <!--<section class="pagina">
 
     <div class="titulo-pagina">

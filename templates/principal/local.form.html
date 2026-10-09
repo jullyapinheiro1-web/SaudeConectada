@@ -1,0 +1,70 @@
+{% extends 'principal/base.html' %}
+
+{% block title %}
+{% if local %}Editar Local{% else %}Cadastrar Local{% endif %} | Saúde Conectada
+{% endblock %}
+
+{% block content %}
+<!-- Ajustado o background-color para o mesmo tom verde claro da imagem -->
+<section class="pagina d-flex flex-column align-items-center" style="background-color: #c6f4d6; min-height: 100vh; padding: 40px 20px; font-family: sans-serif;">
+
+    <div style="width: 100%; max-width: 600px; margin-bottom: 20px;">
+        <!-- Ajustada a cor do título para combinar com a identidade visual -->
+        <h1 style="color: #2d6a4f; font-size: 2rem; font-weight: bold; margin-top: 0;">
+            {% if local %}Editar local{% else %}Cadastrar local{% endif %}
+        </h1>
+    </div>
+
+    <div class="form-container" style="background-color: #ffffff; border-radius: 8px; padding: 40px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); width: 100%; max-width: 600px; box-sizing: border-box;">
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Campo: Nome -->
+            <div style="margin-bottom: 20px;">
+                <label for="nome" style="display: block; font-weight: normal; margin-bottom: 8px; color: #000;">
+                    Nome:
+                </label>
+                <input type="text" name="nome" id="nome" value="{{ local.nome|default:'' }}" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; background-color: #fcfcfc; box-sizing: border-box;" required>
+            </div>
+
+            <!-- Campo: Endereço -->
+            <div style="margin-bottom: 20px;">
+                <label for="endereco" style="display: block; font-weight: normal; margin-bottom: 8px; color: #000;">
+                    Endereço:
+                </label>
+                <input type="text" name="endereco" id="endereco" value="{{ local.endereco|default:'' }}" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; background-color: #fcfcfc; box-sizing: border-box;" required>
+            </div>
+
+            <!-- Campo: Cidade -->
+            <div style="margin-bottom: 25px;">
+                <label for="cidade" style="display: block; font-weight: normal; margin-bottom: 8px; color: #000;">
+                    Cidade:
+                </label>
+                <input type="text" name="cidade" id="cidade" value="{{ local.cidade|default:'' }}" style="width: 100%; padding: 10px; border: 1px solid #ced4da; border-radius: 4px; background-color: #fcfcfc; box-sizing: border-box;" required>
+            </div>
+
+            <!-- Botão Salvar (Ajustado para o verde escuro exato da imagem) -->
+            <button type="submit" style="width: 100%; background-color: #2d6a4f; color: white; border: none; padding: 12px; border-radius: 4px; font-weight: bold; cursor: pointer; font-size: 1rem; margin-bottom: 15px;">
+                Salvar Alterações
+            </button>
+
+            <!-- Botão Cancelar Dinâmico -->
+            <div style="text-align: left;">
+                {% if local %}
+                    <!-- Se estiver editando, cancelar volta para a tela de DETALHES daquele local -->
+                    <a href="{% url 'principal:detalhes_local' local.id %}" style="color: #a55b5b; text-decoration: underline; font-size: 0.9rem;">
+                        Cancelar
+                    </a>
+                {% else %}
+                    <!-- CORREÇÃO: Cor alterada de azul para a cor padrão de cancelamento (#a55b5b) da imagem -->
+                    <a href="{% url 'principal:locais' %}" style="color: #a55b5b; text-decoration: underline; font-size: 0.9rem;">
+                        Cancelar
+                    </a>
+                {% endif %}
+            </div>
+
+        </form>
+    </div>
+</section>
+{% endblock %}
