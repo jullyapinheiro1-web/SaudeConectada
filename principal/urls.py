@@ -56,17 +56,29 @@ urlpatterns = [
         views.locais,
         name='locais'
     ),
+
+    path(
+        'locais/cadastrar/',
+        views.cadastrar_local,
+        name='cadastrar_local'
+    ),
+
+    path(
+        'locais/<int:pk>/',
+        views.detalhes_local,  # CORREÇÃO: Agora apontando para a view correta de detalhes
+        name='detalhes_local'
+    ),
+
+    path(
+        'locais/<int:pk>/editar/',
+        views.editar_local,
+        name='editar_local'
+    ),
+    # Adicione esta linha no seu urlpatterns dentro do urls.py:
+    path(
+        'locais/<int:pk>/excluir/',
+        views.excluir_local,
+        name='excluir_local'
+    ),
+
 ]
-
-
-#from django.contrib import admin
-#from django.urls import path
-#from principal import views
-
-#app_name = 'principal'
-#urlpatterns = [
-#    path('', views.home, name='home'),
-#    path('vacinas/', views.vacinas, name='vacinas'),
-#    path('campanhas/', views.campanhas, name='campanhas'),
-#    path('locais/', views.locais, name='locais'),
-#]
