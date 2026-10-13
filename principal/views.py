@@ -34,6 +34,10 @@ def locais(request):
     })
 
 
+# ==========================================
+# VIEWS DE VACINAS
+# ==========================================
+
 class VacinaListView(ListView):
     model = Vacina
     template_name = 'principal/vacina_list.html'
@@ -66,34 +70,31 @@ class VacinaDeleteView(DeleteView):
     success_url = reverse_lazy('principal:vacinas')
 
 
+# ==========================================
+# VIEWS DE CAMPANHAS (TODAS AS ADICIONADAS AQUI)
+# ==========================================
 
-#from django.shortcuts import render
-#from .models import Vacina, Campanha, LocalVacinacao
-
-
-#def home(request):
- #   return render(request, 'principal/home.html')
-
-
-#def vacinas(request):
- #   vacinas = Vacina.objects.all()
-
-#    return render(request, 'principal/vacinas.html', {
-#        'vacinas': vacinas
-#    })
+class CampanhaCreateView(CreateView):
+    model = Campanha
+    fields = '__all__'
+    template_name = 'principal/campanha_form.html'
+    success_url = reverse_lazy('principal:campanhas')
 
 
-#def campanhas(request):
-#    campanhas = Campanha.objects.all()
-
-#    return render(request, 'principal/campanhas.html', {
-#        'campanhas': campanhas
-#    })
+class CampanhaDetailView(DetailView):
+    model = Campanha
+    template_name = 'principal/campanha_detail.html'
+    context_object_name = 'campanha'
 
 
-#def locais(request):
-#    locais = LocalVacinacao.objects.all()
+class CampanhaUpdateView(UpdateView):
+    model = Campanha
+    fields = '__all__'
+    template_name = 'principal/campanha_form.html'
+    success_url = reverse_lazy('principal:campanhas')
 
-#    return render(request, 'principal/locais.html', {
-#        'locais': locais
-#    })
+
+class CampanhaDeleteView(DeleteView):
+    model = Campanha
+    template_name = 'principal/campanha_confirm_delete.html'
+    success_url = reverse_lazy('principal:campanhas')

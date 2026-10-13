@@ -1,76 +1,60 @@
 {% extends 'principal/base.html' %}
-
-
-{% block title %}
-Campanhas | Saúde Conectada
-{% endblock %}
-
+{% block title %} Campanhas | Saúde Conectada {% endblock %}
 
 {% block content %}
-
 <section class="pagina">
-
+    <!-- Cabeçalho da página -->
     <div class="titulo-pagina">
-
         <div>
-
-            <h1>
-                Campanhas de vacinação
-            </h1>
-
-            <p>
-                Consulte as campanhas de vacinação disponíveis.
-            </p>
-
+            <h1>Campanhas de vacinação</h1>
+            <p> Confira as campanhas de vacinação disponíveis e acompanhe suas informações. </p>
         </div>
-
-
-        <a href="{% url 'admin:principal_campanha_add' %}"
-           class="botao">
-
-            Cadastrar campanha
-
-        </a>
-
+        <a href="{% url 'principal:campanha_create' %}" class="botao"> + Cadastrar campanha </a>
     </div>
 
+    <!-- Lista de campanhas em Tabela Estilizada -->
+    <div style="margin-top: 30px; overflow-x: auto; background: rgba(255, 255, 255, 0.4); padding: 15px; border-radius: 8px;">
+        <table style="width: 100%; border-collapse: collapse; min-width: 600px; font-family: sans-serif; font-size: 14px;">
+            <thead>
+                <tr style="background-color: #111a2e; color: #ffffff; text-align: left; border-bottom: 2px solid #0a1120;">
+                    <th style="padding: 14px 16px; font-weight: bold; letter-spacing: 0.5px;">VACINA / CAMPANHA</th>
+                    <th style="padding: 14px 16px; font-weight: bold; letter-spacing: 0.5px;">FABRICANTE / DESCRIÇÃO</th>
+                    <th style="padding: 14px 16px; font-weight: bold; letter-spacing: 0.5px;">DATA INÍCIO</th>
+                    <th style="padding: 14px 16px; font-weight: bold; letter-spacing: 0.5px;">DATA ENCERRAMENTO</th>
+                    <th style="padding: 14px 16px; font-weight: bold; letter-spacing: 0.5px; text-align: center;">AÇÕES</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for campanha in campanhas %}
+                <tr style="border-bottom: 1px solid rgba(0, 0, 0, 0.1); background-color: rgba(255, 255, 255, 0.6);">
+                    <td style="padding: 14px 16px; color: #1a1e21; font-weight: 600; text-transform: uppercase;">{{ campanha.nome }}</td>
+                    <td style="padding: 14px 16px; color: #495057;">{{ campanha.descricao }}</td>
+                    <td style="padding: 14px 16px; color: #495057;">{{ campanha.data_inicio|date:"d/m/Y" }}</td>
+                    <td style="padding: 14px 16px; color: #495057;">{{ campanha.data_fim|date:"d/m/Y" }}</td>
 
-    <div class="cards">
-
-        {% for campanha in campanhas %}
-
-            <div class="card">
-
-                <h3>
-                    {{ campanha.nome }}
-                </h3>
-
-                <p>
-                    {{ campanha.descricao }}
-                </p>
-
-                <p>
-                    <strong>Início:</strong>
-                    {{ campanha.data_inicio }}
-                </p>
-
-                <p>
-                    <strong>Fim:</strong>
-                    {{ campanha.data_fim }}
-                </p>
-
-            </div>
-
-        {% empty %}
-
-            <p>
-                Nenhuma campanha cadastrada.
-            </p>
-
-        {% endfor %}
-
+                    <!-- Coluna de Ações Corrigida -->
+                    <td style="padding: 14px 16px; text-align: center; white-space: nowrap;">
+                        <a href="{% url 'principal:campanha_detail' campanha.id %}" style="display: inline-block; background-color: #1e5631; color: white; padding: 6px 10px; border-radius: 4px; margin-right: 5px; text-decoration: none;" title="Visualizar">
+                            👁️
+                        </a>
+                        <a href="{% url 'principal:campanha_update' campanha.id %}" style="display: inline-block; background-color: #1e5631; color: white; padding: 6px 10px; border-radius: 4px; margin-right: 5px; text-decoration: none;" title="Editar">
+                            ✏️
+                        </a>
+                        <a href="{% url 'principal:campanha_delete' campanha.id %}" style="display: inline-block; background-color: #1e5631; color: white; padding: 6px 10px; border-radius: 4px; text-decoration: none;" title="Excluir">
+                            🗑️
+                        </a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr style="background-color: rgba(255, 255, 255, 0.6);">
+                    <td colspan="5" style="text-align: center; padding: 30px; color: #6c757d;">
+                        <strong style="color: #1a1e21;">Nenhuma campanha cadastrada</strong><br>
+                        No momento, não existem campanhas de vacinação disponíveis.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-
 </section>
-
 {% endblock %}

@@ -50,23 +50,47 @@ urlpatterns = [
         name='campanhas'
     ),
 
+    path(
+        'campanha/cadastrar/',
+        views.CampanhaCreateView.as_view(),  # <-- Corrigido para a classe correta
+        name='campanha_create'
+    ),
+
     # Locais
     path(
         'locais/',
         views.locais,
         name='locais'
     ),
+    # Campanhas
+    path(
+        'campanhas/',
+        views.campanhas,
+        name='campanhas'
+    ),
+
+    path(
+        'campanha/cadastrar/',
+        views.CampanhaCreateView.as_view(),
+        name='campanha_create'
+    ),
+
+    path(
+        'campanha/<int:pk>/',
+        views.CampanhaDetailView.as_view(),  # Adicionado
+        name='campanha_detail'
+    ),
+
+    path(
+        'campanha/<int:pk>/editar/',
+        views.CampanhaUpdateView.as_view(),  # Adicionado
+        name='campanha_update'
+    ),
+
+    path(
+        'campanha/<int:pk>/excluir/',
+        views.CampanhaDeleteView.as_view(),  # Adicionado
+        name='campanha_delete'
+    ),
+
 ]
-
-
-#from django.contrib import admin
-#from django.urls import path
-#from principal import views
-
-#app_name = 'principal'
-#urlpatterns = [
-#    path('', views.home, name='home'),
-#    path('vacinas/', views.vacinas, name='vacinas'),
-#    path('campanhas/', views.campanhas, name='campanhas'),
-#    path('locais/', views.locais, name='locais'),
-#]

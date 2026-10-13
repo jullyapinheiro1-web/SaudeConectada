@@ -1,0 +1,26 @@
+{% extends 'principal/base.html' %}
+{% block title %} Salvar Campanha | Saúde Conectada {% endblock %}
+
+{% block content %}
+<section class="pagina" style="padding: 20px; max-width: 600px; margin: 0 auto;">
+    <div class="titulo-pagina">
+        <h1>{% if view.kwargs.pk %}Editar{% else %}Cadastrar{% endif %} Campanha</h1>
+    </div>
+
+    <div style="background: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 8px; margin-top: 20px;">
+        <form method="post" style="display: flex; flex-direction: column; gap: 15px;">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <div style="margin-top: 10px; display: flex; gap: 10px;">
+                <button type="submit" class="botao" style="background-color: #1e5631; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
+                    Salvar
+                </button>
+                <a href="{% url 'principal:campanhas' %}" style="padding: 10px 20px; background: #6c757d; color: white; text-decoration: none; border-radius: 4px;">
+                    Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

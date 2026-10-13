@@ -1,0 +1,24 @@
+{% extends 'principal/base.html' %}
+{% block title %} Excluir Campanha | Saúde Conectada {% endblock %}
+
+{% block content %}
+<section class="pagina" style="padding: 20px; max-width: 600px; margin: 0 auto;">
+    <div class="titulo-pagina">
+        <h1>Confirmar Exclusão</h1>
+    </div>
+
+    <div style="background: rgba(255, 255, 255, 0.9); padding: 25px; border-radius: 8px; margin-top: 20px; border-left: 5px solid #b22222;">
+        <p style="font-size: 16px; color: #1a1e21; margin-bottom: 20px;">
+            Tem certeza que deseja excluir permanentemente a campanha <strong>"{{ object.nome }}"</strong>? Esta ação não poderá ser desfeita.
+        </p>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" style="background-color: #b22222; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                Sim, excluir campanha
+            </button>
+            <a href="{% url 'principal:campanhas' %}" style="margin-left: 15px; color: #6c757d; text-decoration: none;">Cancelar</a>
+        </form>
+    </div>
+</section>
+{% endblock %}
